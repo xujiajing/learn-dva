@@ -92,7 +92,7 @@ export default {
 
 
 ## 核心概念
-#### 数据流向
+### 数据流向
 <img src="https://zos.alipayobjects.com/rmsportal/PPrerEAKbIoDZYr.png" width=700 />
 
 数据的改变发生通常是通过:  
@@ -104,7 +104,7 @@ export default {
 - 如果是**同步行为**，会将action发送给 Reducer，直接通过 Reducer 改变 State，然后通过 connect 重新渲染组件。
 - 如果是**异步行为**，会将action发送给 Effect，一般是从服务器请求数据，服务器返回数据之后，Effect 会发送相应的 action 给 reducer，由**唯一能改变**state 的 reducer 改变 State ，然后通过connect重新渲染组件。
 
-#### Action
+### Action
 Action：表示操作事件，可以是同步，也可以是异步。它需要有一个 type ，表示这个 `action` 要触发什么操作；`payload` 则表示这个 action 将要传递的数据。
 
 ```
@@ -121,7 +121,7 @@ dispatch(addTodo())
 ```
 
 
-#### Model
+### Model
 Model 是 dva 最重要的部分，可以理解为 redux、react-redux、redux-saga 的封装。 每个独立的route都对应一个model, 每个model包含如下属性:
 
 - `namespace`：模型的命名空间，这个是必须的，而且在同一个应用中每个模型的该属性是唯一的。整个应用的 State，由多个小的 Model 的 State 以 namespace 为 key 合成。
@@ -183,7 +183,7 @@ export default {
 }
 ```
 
-#### RouteComponent
+### RouteComponent
 `RouteComponent` 表示 Router 里匹配路径的 Component，通常会绑定 model 的数据。
 - `Container Component`对应于每个独立的route页面。每个容器组件都维护一个相关的state, 所有的state改变都由容器最终执行。容器组件**负责向其子组件(呈现组件)分配属性(props)**。
 
