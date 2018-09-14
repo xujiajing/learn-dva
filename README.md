@@ -146,7 +146,7 @@ subscriptions: {
     },
 }
 ```
-- `effects`：**用于处理异步操作和业务逻辑，不直接修改 state**。简单的来说，就是获取从服务端获取数据，并且发起一个 action 交给 reducer 的地方。这是基于 redux-saga 实现的，语法为 generator。Generator 返回的是迭代器，通过 yield 关键字实现暂停功能。
+- `effects`：**用于处理异步操作和业务逻辑，不直接修改 state**。简单的来说，就是获取从服务端获取数据，并且发起一个 action 交给 reducer 的地方。这是基于 redux-saga 实现的，语法为 generator。Generator 返回的是迭代器，通过 `yield` 关键字实现暂停功能。
 ```
 effects: {
     *fetch(action, { put, call }) {
@@ -155,7 +155,7 @@ effects: {
     },
 }
 ```
-- `reducers`：**是唯一可以更新 state 的地方**。当数据需要从服务器获取时，需要发起异步请求，请求到数据之后，通过调用 Reducers更新数据到全局state。reducer 是 pure function，他接收参数 state 和 action，返回新的 state，即 (state, action) => newState。
+- `reducers`：**是唯一可以更新 state 的地方**。当数据需要从服务器获取时，需要发起异步请求，请求到数据之后，通过调用 Reducers更新数据到全局state。reducer 是 pure function，他接收参数 state 和 action，返回新的 state，即 `(state, action) => newState`。
 ```
 reducers: {
     save(state, action) {
@@ -168,9 +168,14 @@ reducers: {
 ```
 
 除了上面的几个属性外，需要另外注意几个方法的使用:
-- **select**：从state中查找所需的子state属性。该方法参数为state, 返回一个子state对象。
-- **put**：创建一条effect信息, 指示middleware发起一个action到Store。 `put({type: ‘xxxx’, payload: {}})`
-- **call**：创建一条effect信息，指示middleware使用args作为fn的参数执行，例如call(services.create, payload)
+- **put**：用于触发 action。  
+`yield put({ type: 'todos/add', payload: 'Learn Dva' });`
+
+- **call**：用于调用异步逻辑，支持 promise 。  
+`const result = yield call(fetch, '/todos');`
+
+- **select**：用于从 state 里获取数据。  
+`const todos = yield select(state => state.todos);`
 
 基本的model结构如下:
 ```
@@ -216,7 +221,7 @@ export default {
 ```
 
 ## Dva VS  Redux
-#### 使用Redux
+### 使用Redux
 - antion.js文件
 ```
 export const REQUEST_TODO = 'REQUEST_TODO';
@@ -302,7 +307,7 @@ render(
   document.getElementById('app')
 )
 ```
-#### 使用dva
+### 使用dva
 - model.js 文件
 ```
 export default {
@@ -422,9 +427,10 @@ dva 项目通常都是这种扁平的组织方式:
 好处是更加结构更加清晰了，减少耦合，一删全删，方便 copy 和共享。另外，配合 umi 使用后降低为 0 API。
 
 ## 参考链接
-- [github/dva](https://github.com/dvajs/dva/blob/master/README_zh-CN.md) 
+- [github/dva](https://github.com/dvajs/dva/blob/master/README_zh-CN.md)
 
 - [DvaJS官方文档](https://dvajs.com/)  
+- [DvaJS知识地图](https://dvajs.com/knowledgemap/#javascript-%E8%AF%AD%E8%A8%80)
 - [Redux-Saga中文文档](https://redux-saga-in-chinese.js.org/)  
 - [UmiJS官方文档](https://umijs.org/zh/)  
 - [dva + umi + antd 项目实战](https://github.com/zuiidea/antd-admin)  
