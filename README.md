@@ -205,7 +205,7 @@ export default {
 │   ├── assets         // 用于存放静态资源，打包时会经过 webpack 处理
 │   ├── components     // 用于存放 React 组件，一般是该项目公用的无状态组件
 │   ├── models         // dva最重要的文件夹，所有的数据交互及逻辑都写在这里
-│   ├── routes         //  用于存放需要 connect model 的路由组件
+│   ├── routes         // 用于存放需要 connect model 的路由组件
 │   ├── services       // 用于存放服务文件，一般是网络请求等；
 │   ├── utils          // 工具类库
 │   ├── index.css      // 入口文件样式
